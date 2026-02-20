@@ -10,7 +10,7 @@
 
 /* Background */
 .dining-bg{
-  background-image: url('Contact.png');
+  background-image: url('/Contact.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
