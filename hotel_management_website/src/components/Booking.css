@@ -1,0 +1,147 @@
+.booking-page {
+  background-image: url('Register1.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.container {
+  border-radius: 12px;
+  padding: 25px 30px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  border: 2px solid black;
+  backdrop-filter: blur(6px);
+
+}
+
+.container:hover {
+  /* transform: translateY(-5px); */
+  box-shadow:
+    -5px -5px 15px #9b023f,
+    5px 5px 15px #022176;
+}
+
+h2 {
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #000000;
+}
+
+
+label {
+  font-weight: 600;
+  margin-bottom: 5px;
+  display: block;
+  color: #000000;
+}
+
+
+input,
+select {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 2px solid black;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  background-color: transparent;
+}
+
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #000000;
+  box-shadow: 0 0 0 2px rgba(11, 26, 51, 0.2);
+}
+
+
+.text-danger {
+  font-size: 13px;
+  margin-top: 4px;
+  color: #dc3545;
+}
+
+
+select {
+  cursor: pointer;
+  background-color: #fff;
+}
+
+
+button {
+  background-color: rgb(212, 205, 191);
+  color: #0a0a0a;
+  border: none;
+  border-radius: 8px;
+  padding: 15px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+
+button:hover {
+  background-color: #dfd7cd;
+}
+
+/* Media query for tablets (max-width: 992px) */
+@media (max-width: 992px) {
+  .booking-page {
+    background-size: contain;
+  }
+  
+  .container {
+    padding: 50px ;
+    margin: 50px;
+    width: 90%;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+
+  input, select {
+    font-size: 13px;
+    padding: 8px 10px;
+  }
+
+  button {
+    padding: 12px;
+    font-size: 14px;
+  }
+}
+
+/* Media query for mobile devices (max-width: 600px) */
+@media (max-width: 600px) {
+  .booking-page {
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .container {
+    padding: 15px 15px;
+    margin: 15px;
+    border-radius: 10px;
+  }
+
+  h2 {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  label {
+    font-size: 14px;
+  }
+
+  input, select {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  button {
+    padding: 10px;
+    font-size: 13px;
+  }
+}

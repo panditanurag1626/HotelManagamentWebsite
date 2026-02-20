@@ -1,0 +1,100 @@
+.about-bg{
+   background-image: url('About4.png');  background-size: cover;
+  background-position: center;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
+.about-section {
+  padding: 40px 20px;
+  line-height: 1.7;
+}
+
+.conta {
+  max-width: 1100px;
+  margin: auto;
+}
+
+.main-title {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.center-title {
+  text-align: center;
+  margin: 40px 0 20px;
+}
+
+.intro-text,
+.set,
+.final-text {
+  font-size: 17px;
+  color: black;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+/* Images */
+.abo {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0;
+}
+
+.abo img {
+  width: 80%;
+  max-width: 800px;
+  border-radius: 12px;
+}
+
+/* Cards */
+.about-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.card {
+  padding: 25px;
+  border-radius: 15px;
+  background: #f8f8f8;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card h3 {
+  margin-bottom: 10px;
+  color: black;
+}
+
+.card p {
+  color: black;
+}
+
+/* Bottom title */
+.prov {
+  text-align: center;
+  margin: 60px 0 20px;
+  font-size: 28px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .main-title {
+    font-size: 28px;
+  }
+  .prov {
+    font-size: 22px;
+  }
+
+  .abo img {
+    width: 95%;
+  }
+}

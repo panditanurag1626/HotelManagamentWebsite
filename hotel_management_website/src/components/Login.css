@@ -1,0 +1,150 @@
+/* Background only on body */
+.login-bg {
+  background-image: url('Register1.png');
+  background-size: cover;
+  background-position: center;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
+/* Layout wrapper */
+.login-wrapper {
+  min-height: 100vh;
+  display: flex;
+  border-radius: 12px;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Card */
+.login-card {
+  width: 380px;
+  padding: 40px 30px;
+  border-radius: 12px;
+  /* background-color: transparent; */
+  backdrop-filter: blur(6px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  /* transition: 0.4s ease; */
+  border: 2px solid black;
+}
+
+.login-card:hover {
+  box-shadow: -5px -5px 15px #ed106c,
+    5px 5px 15px #1249e1;
+}
+
+.login-card h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: black;
+}
+
+.input-box {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.input-box label {
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: black;
+}
+
+.input-box input {
+  padding: 12px 15px;
+  border-radius: 8px;
+  color: black;
+  border: 2px solid black;
+  outline: none;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  background-color: rgb(212, 205, 191);
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.login-btn:hover {
+  background-color: #dfd7cd;
+}
+
+.text-danger {
+  color: red;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.register-link {
+  text-align: center;
+  margin-top: 20px;
+  color: black;
+}
+/* .acco{
+  color:"black";
+  border-bottom: "2px solid white";
+} */
+
+/* ===== Tablet ===== */
+@media (max-width: 768px) {
+
+  .login-card {
+    width: 90%;
+    padding: 30px 20px;
+  }
+
+  .login-card h2 {
+    font-size: 22px;
+  }
+
+  .input-box input {
+    padding: 10px;
+  }
+
+  .login-btn {
+    padding: 12px;
+  }
+}
+
+
+/*  ===== Mobile ===== */
+@media (max-width: 480px) {
+
+  .login-wrapper {
+    padding: 10px;
+  }
+
+  .login-card {
+    width: 100%;
+    padding: 25px 15px;
+  }
+
+  .login-card h2 {
+    font-size: 20px;
+  }
+
+  .input-box label {
+    font-size: 13px;
+  }
+
+  .input-box input {
+    padding: 9px;
+    font-size: 14px;
+  }
+
+  .login-btn {
+    font-size: 14px;
+  }
+
+  .login-bg {
+    background-position: center;
+    background-size: cover;
+  }
+}
