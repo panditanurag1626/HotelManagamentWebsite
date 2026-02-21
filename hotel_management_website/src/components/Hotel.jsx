@@ -101,7 +101,7 @@ export default function Hotel() {
                       state={{ hotel: h }}
                       className="btn btn-primary w-100"
                     >
-                      Book Room
+                      ✨ Book This Room
                     </NavLink>
                   )}
                 </div>

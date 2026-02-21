@@ -24,7 +24,6 @@ export default function Hotel() {
         const response = await fetch("/db.json");
         const data = await response.json();
 
-        // Agar structure { hotels: [...] } hai
         if (data.hotels) {
           setHotels(data.hotels);
         } else {
@@ -100,7 +99,7 @@ export default function Hotel() {
                       state={{ hotel: h }}
                       className="btn btn-primary w-100"
                     >
-                      Book Room
+                      ✨ Book This Room
                     </NavLink>
                   )}
                 </div>
