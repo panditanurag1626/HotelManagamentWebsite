@@ -7,7 +7,10 @@ export default function Hotel() {
   const [hotels, setHotels] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Background class
+  const currentUser = JSON.parse(localStorage.getItem("currentUser") || "null");
+  const isAdmin = currentUser?.role === "admin";
+
+  // Background
   useEffect(() => {
     document.body.classList.add("hotel-bg");
     return () => {
@@ -15,31 +18,25 @@ export default function Hotel() {
     };
   }, []);
 
-  const currentUser = JSON.parse(localStorage.getItem("currentUser") || "null");
-  const isAdmin = currentUser?.role === "admin";
-
-
+  // 🔥 Production Safe Fetch
   useEffect(() => {
-    async function fetchHotels() {
+    async function loadHotels() {
       try {
-        const response = await fetch("/db.json");
-        const data = await response.json();
-
-        // Agar structure { hotels: [...] } hai
-        if (data.hotels) {
-          setHotels(data.hotels);
-        } else {
-          setHotels(data);
+        const res = await fetch("/db.json"); // public folder se
+        if (!res.ok) {
+          throw new Error("Failed to fetch db.json");
         }
-
-      } catch (error) {
-        console.error("Error fetching hotels:", error);
+        const data = await res.json();
+        setHotels(data.hotels || []);
+      } catch (err) {
+        console.error("Error:", err);
+        setHotels([]);
       } finally {
         setLoading(false);
       }
     }
 
-    fetchHotels();
+    loadHotels();
   }, []);
 
   return (
@@ -47,17 +44,20 @@ export default function Hotel() {
       {loading ? (
         <p style={{ textAlign: "center" }}>Loading Hotels...</p>
       ) : hotels.length === 0 ? (
-        <p style={{ textAlign: "center" }}>No Hotels Available...</p>
+        <p style={{ textAlign: "center", color: "red" }}>
+          No Hotels Available...
+        </p>
       ) : (
         <div className="row">
           {hotels.map((h) => (
             <div key={h.id} className="col-md-4 mt-3">
-              <div className="card h-100">
+              <div className="card h-100 shadow">
                 <img
                   src={h.photo}
                   alt={h.name}
                   className="card-img-top"
-                  height="160"
+                  height="180"
+                  style={{ objectFit: "cover" }}
                   onError={(e) => (e.target.src = "")}
                 />
 
@@ -70,17 +70,9 @@ export default function Hotel() {
                     </strong> {h.roomnumber}
                   </p>
 
-                  <p>
-                    <strong>Location:</strong> {h.location}
-                  </p>
-
-                  <p>
-                    <strong>Room:</strong> {h.roomType}
-                  </p>
-
-                  <p>
-                    <strong>Price:</strong> ₹{h.price} / night
-                  </p>
+                  <p><strong>Location:</strong> {h.location}</p>
+                  <p><strong>Room:</strong> {h.roomType}</p>
+                  <p><strong>Price:</strong> ₹{h.price} / night</p>
 
                   <p
                     style={{
@@ -92,7 +84,7 @@ export default function Hotel() {
                   </p>
 
                   {isAdmin ? (
-                    <Link to="/edit" className="edit-btn">
+                    <Link to="/edit" className="btn btn-warning w-100">
                       Edit
                     </Link>
                   ) : (
@@ -101,7 +93,7 @@ export default function Hotel() {
                       state={{ hotel: h }}
                       className="btn btn-primary w-100"
                     >
-                      ✨ Book This Room
+                      🏨 Reserve Now
                     </NavLink>
                   )}
                 </div>
