@@ -12,15 +12,12 @@ import About from "./components/About.jsx";
 import Login from "./components/Login.jsx";
 import Booking from "./components/Booking.jsx";
 import Contact from "./components/Contact.jsx";
-import Rooms from "./components/Rooms.jsx"; 
+import Rooms from "./components/Rooms.jsx";
 import Stay from "./components/Stay.jsx";
 import Dining from "./components/Dining.jsx";
 import Service from "./components/service.jsx";
 import Order from "./components/Order.jsx";
 import Edit from "./components/Edit.jsx";
-
-
-
 
 const router = createBrowserRouter([
   {
@@ -38,7 +35,7 @@ const router = createBrowserRouter([
       { path: "dining", element: <Dining /> },
       { path: "service", element: <Service /> },
       { path: "order", element: <Order /> },
-      { path: "edit",  element: <Edit />},
+      { path: "edit", element: <Edit /> }
     ]
   }
 ]);
