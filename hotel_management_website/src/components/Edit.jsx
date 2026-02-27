@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./Edit.css";
 
+const API_URL = "https://hotel-backend.onrender.com/hotels";
+
 export default function Edit() {
 
   const [hotels, setHotels] = useState([]);
+
   const [form, setForm] = useState({
     id: "",
     roomnumber: "",
@@ -16,6 +19,21 @@ export default function Edit() {
   });
 
   const [isEditing, setIsEditing] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const fetchHotels = async () => {
+    try {
+      setLoading(true);
+      const res = await fetch(API_URL);
+      if (!res.ok) throw new Error("Failed to fetch hotels");
+      const data = await res.json();
+      setHotels(data);
+    } catch (error) {
+      console.log("Fetch Error:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     fetchHotels();
@@ -26,61 +44,57 @@ export default function Edit() {
     return () => document.body.classList.remove("edit-bg");
   }, []);
 
-  const fetchHotels = async () => {
-    try {
-      const res = await fetch("http://localhost:5000/hotels");
-      const data = await res.json();
-      setHotels(data);
-    } catch (error) {
-      console.log("Error fetching hotels:", error);
-    }
-  };
-
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setForm({
-      ...form,
+    setForm((prev) => ({
+      ...prev,
       [name]: type === "checkbox" ? checked : value
-    });
+    }));
   };
 
   const handleEdit = (hotel) => {
     setForm({
-      id: hotel.id,
-      roomnumber: hotel.roomnumber,
-      name: hotel.name,
-      location: hotel.location,
-      photo: hotel.photo,
-      roomType: hotel.roomType,
-      price: hotel.price,
+      ...hotel,
       available: hotel.available ?? true
     });
 
     setIsEditing(true);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
+
       if (isEditing) {
-        await fetch(`http://localhost:5000/hotels/${form.id}`, {
+
+        await fetch(`${API_URL}/${form.id}`, {
           method: "PUT",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json"
+          },
           body: JSON.stringify(form)
         });
+
         alert("Hotel Updated ✅");
+
       } else {
 
-        // Remove id when adding new
-        const { id, ...hotelData } = form;
+        const { id, ...newHotel } = form;
 
-        await fetch("http://localhost:5000/hotels", {
+        await fetch(API_URL, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(hotelData)
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(newHotel)
         });
+
         alert("Hotel Added ✅");
       }
 
@@ -88,7 +102,7 @@ export default function Edit() {
       fetchHotels();
 
     } catch (error) {
-      console.log("Error saving hotel:", error);
+      console.log("Submit Error:", error);
     }
   };
 
@@ -103,15 +117,23 @@ export default function Edit() {
       price: "",
       available: true
     });
+
     setIsEditing(false);
   };
 
   const handleDelete = async (id) => {
-    if (window.confirm("Are you sure you want to delete?")) {
-      await fetch(`http://localhost:5000/hotels/${id}`, {
+
+    if (!window.confirm("Are you sure want to delete?")) return;
+
+    try {
+      await fetch(`${API_URL}/${id}`, {
         method: "DELETE"
       });
+
       fetchHotels();
+
+    } catch (error) {
+      console.log("Delete Error:", error);
     }
   };
 
@@ -124,7 +146,6 @@ export default function Edit() {
         <form onSubmit={handleSubmit}>
 
           <input
-            type="text"
             name="roomnumber"
             value={form.roomnumber}
             onChange={handleChange}
@@ -133,7 +154,6 @@ export default function Edit() {
           />
 
           <input
-            type="text"
             name="name"
             value={form.name}
             onChange={handleChange}
@@ -142,7 +162,6 @@ export default function Edit() {
           />
 
           <input
-            type="text"
             name="location"
             value={form.location}
             onChange={handleChange}
@@ -151,7 +170,6 @@ export default function Edit() {
           />
 
           <input
-            type="text"
             name="photo"
             value={form.photo}
             onChange={handleChange}
@@ -160,7 +178,6 @@ export default function Edit() {
           />
 
           <input
-            type="text"
             name="roomType"
             value={form.roomType}
             onChange={handleChange}
@@ -184,7 +201,6 @@ export default function Edit() {
                 name="available"
                 checked={form.available}
                 onChange={handleChange}
-                style={{ transform: "scale(1.4)", marginRight: "8px" }}
               />
               Available
             </label>
@@ -211,41 +227,55 @@ export default function Edit() {
 
       <h2>Hotel List</h2>
 
-      <div className="hotel-list">
-        {hotels.map((h) => (
-          <div key={h.id} className="hotel-card">
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <div className="hotel-list">
 
-            <img src={h.photo} alt={h.name} />
+          {hotels.map((h) => (
+            <div key={h.id} className="hotel-card">
 
-            <h3>{h.name}</h3>
-            <p><strong>Room:</strong> {h.roomnumber}</p>
-            <p><strong>Location:</strong> {h.location}</p>
-            <p><strong>Type:</strong> {h.roomType}</p>
-            <p><strong>Price:</strong> ₹{h.price}</p>
-            <p>
-              <strong>Status:</strong>{" "}
-              {h.available ? "Available" : "Booked"}
-            </p>
+              <img
+                src={h.photo}
+                alt={h.name}
+                onError={(e) =>
+                  (e.target.src =
+                    "https://via.placeholder.com/300x200?text=No+Image")
+                }
+              />
 
-            <div className="card-buttons">
-              <button
-                className="edit-btn"
-                onClick={() => handleEdit(h)}
-              >
-                Edit
-              </button>
+              <h3>{h.name}</h3>
 
-              <button
-                className="delete-btn"
-                onClick={() => handleDelete(h.id)}
-              >
-                Delete
-              </button>
+              <p><strong>Room:</strong> {h.roomnumber}</p>
+              <p><strong>Location:</strong> {h.location}</p>
+              <p><strong>Type:</strong> {h.roomType}</p>
+              <p><strong>Price:</strong> ₹{h.price}</p>
+
+              <p style={{ color: h.available ? "green" : "red" }}>
+                {h.available ? "Available" : "Booked"}
+              </p>
+
+              <div className="card-buttons">
+                <button
+                  className="edit-btn"
+                  onClick={() => handleEdit(h)}
+                >
+                  Edit
+                </button>
+
+                <button
+                  className="delete-btn"
+                  onClick={() => handleDelete(h.id)}
+                >
+                  Delete
+                </button>
+              </div>
+
             </div>
+          ))}
 
-          </div>
-        ))}
-      </div>
+        </div>
+      )}
 
     </div>
   );
