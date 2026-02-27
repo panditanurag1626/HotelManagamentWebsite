@@ -21,13 +21,13 @@ export default function Edit() {
   const [isEditing, setIsEditing] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  // Fetch hotels
   const fetchHotels = async () => {
     try {
       setLoading(true);
       const res = await fetch(API_URL);
-      if (!res.ok) throw new Error("Failed to fetch hotels");
       const data = await res.json();
-      setHotels(data);
+      setHotels(data || []);
     } catch (error) {
       console.log("Fetch Error:", error);
     } finally {
@@ -44,17 +44,21 @@ export default function Edit() {
     return () => document.body.classList.remove("edit-bg");
   }, []);
 
+  // Input change
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setForm((prev) => ({
+
+    setForm(prev => ({
       ...prev,
       [name]: type === "checkbox" ? checked : value
     }));
   };
 
+  // Edit hotel
   const handleEdit = (hotel) => {
     setForm({
       ...hotel,
+      photo: hotel.photo || "",
       available: hotel.available ?? true
     });
 
@@ -66,6 +70,7 @@ export default function Edit() {
     });
   };
 
+  // Submit form
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -106,6 +111,7 @@ export default function Edit() {
     }
   };
 
+  // Reset form
   const resetForm = () => {
     setForm({
       id: "",
@@ -121,6 +127,7 @@ export default function Edit() {
     setIsEditing(false);
   };
 
+  // Delete hotel
   const handleDelete = async (id) => {
 
     if (!window.confirm("Are you sure want to delete?")) return;
@@ -236,12 +243,11 @@ export default function Edit() {
             <div key={h.id} className="hotel-card">
 
               <img
-                src={h.photo}
+                src={h.photo || "https://via.placeholder.com/300x200?text=No+Image"}
                 alt={h.name}
-                onError={(e) =>
-                  (e.target.src =
-                    "https://via.placeholder.com/300x200?text=No+Image")
-                }
+                onError={(e) => {
+                  e.target.src = "https://via.placeholder.com/300x200?text=No+Image";
+                }}
               />
 
               <h3>{h.name}</h3>
@@ -256,6 +262,7 @@ export default function Edit() {
               </p>
 
               <div className="card-buttons">
+
                 <button
                   className="edit-btn"
                   onClick={() => handleEdit(h)}
@@ -269,6 +276,7 @@ export default function Edit() {
                 >
                   Delete
                 </button>
+
               </div>
 
             </div>
