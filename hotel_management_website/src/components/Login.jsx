@@ -24,14 +24,18 @@ export default function Login() {
     }
 
     const users = JSON.parse(localStorage.getItem("users")) || [];
+
     const user = users.find(
       (u) => u.uemail === uemail && u.upass === upass
     );
 
     if (user) {
       localStorage.setItem("currentUser", JSON.stringify(user));
-      window.dispatchEvent(new Event("userLogin"))
+
+      window.dispatchEvent(new Event("userLogin"));
+
       alert("🔐 Login completed successfully");
+
       navigate("/Hotel");
     } else {
       setError("Invalid Email or Password");
@@ -39,7 +43,7 @@ export default function Login() {
   };
 
   return (
-    <div className="login-bg p-0" >
+    <div className="login-bg p-0">
       <div className="login-wrapper">
         <div className="login-card">
           <h2>Login 👤</h2>
@@ -52,8 +56,8 @@ export default function Login() {
               <input
                 type="email"
                 value={uemail}
+                autoComplete="username"
                 onChange={(e) => setUemail(e.target.value)}
-                
               />
             </div>
 
@@ -62,8 +66,8 @@ export default function Login() {
               <input
                 type="password"
                 value={upass}
+                autoComplete="current-password"
                 onChange={(e) => setUpass(e.target.value)}
-               
               />
             </div>
 
@@ -73,11 +77,19 @@ export default function Login() {
           </form>
 
           <div className="register-link">
-            Don’t have an account? <Link to="/booking" style={{color:"black", borderBottom:"2px solid white"}}>Register</Link>
+            Don’t have an account?{" "}
+            <Link
+              to="/booking"
+              style={{
+                color: "black",
+                borderBottom: "2px solid white",
+              }}
+            >
+              Register
+            </Link>
           </div>
         </div>
       </div>
-    </div >
-
+    </div>
   );
 }
