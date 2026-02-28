@@ -7,7 +7,14 @@
   background-repeat: no-repeat;
   min-height: 100vh;
 }
-
+.anu{
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
+  
+}
 /* Layout wrapper */
 .login-wrapper {
   min-height: 100vh;

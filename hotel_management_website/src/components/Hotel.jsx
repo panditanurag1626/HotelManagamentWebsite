@@ -222,7 +222,7 @@ export default function Hotel() {
                   </p>
 
                   {isAdmin ? (
-                    <Link to="/edit" className="btn btn-warning w-100">
+                    <Link to="/edit" className="anu  w-100">
                       Edit Room
                     </Link>
                   ) : (
