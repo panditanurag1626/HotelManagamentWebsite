@@ -227,7 +227,7 @@ export default function Hotel() {
                     </Link>
                   ) : (
                     <NavLink
-                      to={currentUser ? "/booking" : "/login"}
+                      to={currentUser ? "/confirmbooking" : "/login"}
                       state={{ hotel: h }}
                       className="btn btn-primary w-100"
                     >

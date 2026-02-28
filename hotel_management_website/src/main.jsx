@@ -18,6 +18,7 @@ import Dining from "./components/Dining.jsx";
 import Service from "./components/service.jsx";
 import Order from "./components/Order.jsx";
 import Edit from "./components/Edit.jsx";
+import ConfirmBooking from "./components/ConfirmB0oking.jsx";
 
 const router = createBrowserRouter([
   {
@@ -37,7 +38,8 @@ const router = createBrowserRouter([
       { path: "order", element: <Order /> },
       { path: "edit", element: <Edit /> },
 
-      { path: "*", element: <Home /> }
+      { path: "*", element: <Home /> },
+      { path: "confirmbooking", element: <ConfirmBooking />}
     ]
   }
 ]);
