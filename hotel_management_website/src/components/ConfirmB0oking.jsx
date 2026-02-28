@@ -1,5 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import "./ConfirmBooking.css";
+import { useEffect } from "react";
 
 export default function ConfirmBooking() {
 
@@ -7,11 +8,19 @@ export default function ConfirmBooking() {
   const navigate = useNavigate();
 
   const hotel = location.state?.hotel;
-  const user = JSON.parse(localStorage.getItem("currentUser"));
+
+  const user =
+    JSON.parse(localStorage.getItem("currentUser")) || {
+      username: "Guest",
+      phone: "N/A"
+    };
 
   const handleConfirm = () => {
 
-    if (!user || !hotel) return;
+    if (!hotel) {
+      alert("Booking data not found ❌");
+      return;
+    }
 
     /* Save Booking */
     const bookings =
@@ -19,27 +28,32 @@ export default function ConfirmBooking() {
 
     bookings.push({
       user: user.username,
+      phone: user.phone,
       hotel: hotel,
       date: new Date().toLocaleString()
     });
 
     localStorage.setItem("bookings", JSON.stringify(bookings));
 
-    const hotelOwnerNumber = "9026067073";
+    /* WhatsApp Notification */
+    const ownerNumber = "9026067073"; 
 
     const message = `
 🔥 New Booking Alert
 
 👤 Name : ${user.username}
+📞 Phone : ${user.phone}
+
 🏨 Hotel : ${hotel.name}
 🚪 Room No : ${hotel.roomnumber}
+📍 Location : ${hotel.location}
 💰 Price : ₹${hotel.price}
 
-✅ Room Booked Successfully
+✅ Booking Confirmed
 `;
 
     const whatsappURL =
-      `https://wa.me/${hotelOwnerNumber}?text=${encodeURIComponent(message)}`;
+      `https://wa.me/${ownerNumber}?text=${encodeURIComponent(message)}`;
 
     window.open(whatsappURL, "_blank");
 
@@ -49,11 +63,18 @@ export default function ConfirmBooking() {
   };
 
   if (!hotel) {
-    return <h2 style={{ textAlign: "center" }}>
-      No Booking Data Found ❌
-    </h2>;
+    return (
+      <h2 style={{ textAlign: "center", padding: "40px" }}>
+        No Booking Data Found ❌
+      </h2>
+    );
   }
-
+  useEffect(() => {
+    document.body.classList.add("confo-bg")
+    return(() => {
+      document.body.classList.remove("confo-bg")
+    })
+  })
   return (
     <div className="booking-container">
 
@@ -63,11 +84,12 @@ export default function ConfirmBooking() {
 
         <img src={hotel.photo} alt={hotel.name} />
 
-        <h3>{hotel.name}</h3>
+        <h3>👤 {user.username}</h3>
 
-        <p>Room : {hotel.roomnumber}</p>
-        <p>Location : {hotel.location}</p>
-        <p>Price : ₹{hotel.price}</p>
+        <p>🏨 Hotel : {hotel.name}</p>
+        <p>🚪 Room : {hotel.roomnumber}</p>
+        <p>📍 Location : {hotel.location}</p>
+        <p>💰 Price : ₹{hotel.price}</p>
 
         <button onClick={handleConfirm}>
           Confirm Booking ✅
