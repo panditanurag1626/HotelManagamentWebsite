@@ -44,7 +44,7 @@ export default function Contact() {
         <div className="contact-info">
           <h3>Hotel Management Office</h3>
           <p>📍 Address: Ashwan Mishran, Rampur, Jaunpur, Uttar Pradesh</p>
-          <a href="tel:+919876543210" className="call-btn">
+          <a href="tel:+919026067073" className="call-btn">
           📞 Call Us: +91 9026067073
           </a>
           <p>✉️ Email: anurag56@gmail.com</p>
