@@ -3,7 +3,7 @@ import "./Edit.css";
 
 export default function Edit() {
 
-  // ✅ Dummy Hotel Data
+ 
   const [hotels, setHotels] = useState([
     {
       id: 1,
