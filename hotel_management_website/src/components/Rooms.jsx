@@ -2,10 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./Hotel.css";
 
-/* =========================
-   Constant Hotel Data
-========================= */
-
 const hotelData = {
   hotels: [
     {
@@ -143,7 +139,6 @@ const hotelData = {
   ],
 };
 
-/* ========================= */
 
 export default function Hotel() {
   const [hotels, setHotels] = useState([]);

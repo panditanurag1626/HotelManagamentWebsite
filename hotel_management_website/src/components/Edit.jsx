@@ -1,11 +1,31 @@
 import React, { useEffect, useState } from "react";
 import "./Edit.css";
 
-const API_URL = "https://hotel-backend.onrender.com/hotels";
-
 export default function Edit() {
 
-  const [hotels, setHotels] = useState([]);
+  // ✅ Dummy Hotel Data
+  const [hotels, setHotels] = useState([
+    {
+      id: 1,
+      roomnumber: "101",
+      name: "Hotel Taj",
+      location: "Mumbai",
+      photo: "https://via.placeholder.com/300x200",
+      roomType: "Deluxe",
+      price: 3000,
+      available: true
+    },
+    {
+      id: 2,
+      roomnumber: "102",
+      name: "Hotel Oberoi",
+      location: "Delhi",
+      photo: "https://via.placeholder.com/300x200",
+      roomType: "Standard",
+      price: 2000,
+      available: false
+    }
+  ]);
 
   const [form, setForm] = useState({
     id: "",
@@ -19,32 +39,9 @@ export default function Edit() {
   });
 
   const [isEditing, setIsEditing] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [loading] = useState(false);
 
-  // Fetch hotels
-  const fetchHotels = async () => {
-    try {
-      setLoading(true);
-      const res = await fetch(API_URL);
-      const data = await res.json();
-      setHotels(data || []);
-    } catch (error) {
-      console.log("Fetch Error:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchHotels();
-  }, []);
-
-  useEffect(() => {
-    document.body.classList.add("edit-bg");
-    return () => document.body.classList.remove("edit-bg");
-  }, []);
-
-  // Input change
+  // Input Change
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
 
@@ -54,14 +51,9 @@ export default function Edit() {
     }));
   };
 
-  // Edit hotel
+  // Edit Hotel
   const handleEdit = (hotel) => {
-    setForm({
-      ...hotel,
-      photo: hotel.photo || "",
-      available: hotel.available ?? true
-    });
-
+    setForm(hotel);
     setIsEditing(true);
 
     window.scrollTo({
@@ -70,48 +62,36 @@ export default function Edit() {
     });
   };
 
-  // Submit form
-  const handleSubmit = async (e) => {
+  // Submit Form
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    try {
+    if (isEditing) {
 
-      if (isEditing) {
+      // Update Hotel
+      setHotels(prev =>
+        prev.map(h =>
+          h.id === form.id ? form : h
+        )
+      );
 
-        await fetch(`${API_URL}/${form.id}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(form)
-        });
+      alert("Hotel Updated ✅");
 
-        alert("Hotel Updated ✅");
+    } else {
 
-      } else {
+      // Add Hotel
+      setHotels(prev => [
+        ...prev,
+        { ...form, id: Date.now() }
+      ]);
 
-        const { id, ...newHotel } = form;
-
-        await fetch(API_URL, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(newHotel)
-        });
-
-        alert("Hotel Added ✅");
-      }
-
-      resetForm();
-      fetchHotels();
-
-    } catch (error) {
-      console.log("Submit Error:", error);
+      alert("Hotel Added ✅");
     }
+
+    resetForm();
   };
 
-  // Reset form
+  // Reset Form
   const resetForm = () => {
     setForm({
       id: "",
@@ -127,21 +107,12 @@ export default function Edit() {
     setIsEditing(false);
   };
 
-  // Delete hotel
-  const handleDelete = async (id) => {
+  // Delete Hotel
+  const handleDelete = (id) => {
 
     if (!window.confirm("Are you sure want to delete?")) return;
 
-    try {
-      await fetch(`${API_URL}/${id}`, {
-        method: "DELETE"
-      });
-
-      fetchHotels();
-
-    } catch (error) {
-      console.log("Delete Error:", error);
-    }
+    setHotels(prev => prev.filter(h => h.id !== id));
   };
 
   return (
