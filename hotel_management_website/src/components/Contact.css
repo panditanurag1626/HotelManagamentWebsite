@@ -6,7 +6,19 @@
   background-repeat: no-repeat;
   min-height: 100vh;
 }
+.call-btn{
+  text-decoration:none;
+  color:black;
+  background:rgb(181, 146, 228);
+  border-radius:8px;
+  display:inline-block;
+  margin-top:10px;
+  transition:0.3s;
+}
 
+.call-btn:hover{
+  background:rgb(120, 81, 170);
+}
 .contact-container {
   padding: 50px 20px;
   background-color: #f8f9fa;

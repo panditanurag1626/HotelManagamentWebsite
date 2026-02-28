@@ -22,7 +22,7 @@ export default function Contact() {
       document.body.classList.remove("contact-bg");
     };
   }, []);
-  
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -44,7 +44,9 @@ export default function Contact() {
         <div className="contact-info">
           <h3>Hotel Management Office</h3>
           <p>📍 Address: Ashwan Mishran, Rampur, Jaunpur, Uttar Pradesh</p>
-          <p>📞 Phone: +91 98765 43210</p>
+          <a href="tel:+919876543210" className="call-btn">
+          📞 Call Us: +91 9026067073
+          </a>
           <p>✉️ Email: anurag56@gmail.com</p>
           <p>⏰ Working Hours: 24 x 7</p>
 
