@@ -3,7 +3,7 @@
   background-image: url("/Contact.png");
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;===
+  background-repeat: no-repeat;
   min-height: 100vh;
 }
 
@@ -95,7 +95,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 25px;
-  align-items: stretch;   
+  align-items: stretch;   /* FIX */
 }
 
 .hotel-card {
@@ -105,11 +105,11 @@
   box-shadow: 0 4px 15px rgba(0,0,0,0.1);
   transition: 0.3s ease;
 
-  display: flex;            
-  flex-direction: column;    
-  justify-content: space-between;
-  height: 100%;               
-  min-height: 420px;         
+  display: flex;              /* FIX */
+  flex-direction: column;     /* FIX */
+  justify-content: space-between; /* FIX */
+  height: 100%;               /* FIX */
+  min-height: 420px;          /* FIXED HEIGHT */
 }
 
 .hotel-card:hover {
