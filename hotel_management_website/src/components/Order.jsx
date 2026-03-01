@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Order.css";
 
 export default function PaymentForm() {
+
   const [roomId, setRoomId] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("");
 
@@ -21,24 +22,47 @@ export default function PaymentForm() {
     }
 
     const result = window.confirm(
-      `🎉 Congratulations! Your food booking is confirmed. 🍽️✅
+      `🎉 Confirm Food Booking?
 Room ID: ${roomId}
-Payment: ${paymentMethod}
-`
+Payment: ${paymentMethod}`
     );
 
-    if (result) {
-      window.location.href = "/";
-    }
+    if (!result) return;
+
+  
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+    const username = currentUser?.username || "Guest";
+    const phone = currentUser?.phone || "Not Provided";
+
+    const message = `
+🍔 New Food Order Alert 🍔
+
+👤 Name : ${username}
+📞 Phone : ${phone}
+🛏 Room ID : ${roomId}
+💳 Payment : ${paymentMethod}
+
+✅ Payment Confirmed
+`;
+
+    const encodedMessage = encodeURIComponent(message);
+
+    const whatsappNumber = "9026067073"; 
+   
+
+    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+    window.open(whatsappURL, "_blank");
 
     setRoomId("");
     setPaymentMethod("");
   };
 
-
   return (
     <div className="form-container">
       <form className="payment-form" onSubmit={handleSubmit}>
+
         <h2>🍔 Food Booking Payment</h2>
 
         <label>Room ID</label>
@@ -47,17 +71,14 @@ Payment: ${paymentMethod}
           placeholder="Enter Room ID"
           value={roomId}
           onChange={(e) => setRoomId(e.target.value)}
-          style={{ border: "1px solid black" }}
         />
 
         <div className="payment-options">
           <section>Payment Method</section>
 
           <div
-            className={`payment-btn ${paymentMethod === "Cash" ? "selected" : ""
-              }`}
+            className={`payment-btn ${paymentMethod === "Cash" ? "selected" : ""}`}
             onClick={() => setPaymentMethod("Cash")}
-          // style={{border:"1px solid black",color:"black"}}
           >
             Cash
           </div>
@@ -66,6 +87,7 @@ Payment: ${paymentMethod}
         <button type="submit" className="pay-btn">
           Confirm Payment 💳
         </button>
+
       </form>
     </div>
   );
