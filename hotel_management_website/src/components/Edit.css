@@ -1,217 +1,183 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
+/* Background */
 .edit-bg {
-  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-              url("/Contact.png");
+  background-image: url("/Contact.png");
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
+  background-repeat: no-repeat;
   min-height: 100vh;
 }
 
+/* Page Container */
 .page-container {
-  max-width: 1200px;
+  max-width: 1100px;
   margin: auto;
-  padding: 30px 20px 60px;
+  padding: 20px;
   font-family: Arial, sans-serif;
 }
 
+/* Heading */
 .page-container h2 {
   text-align: center;
-  margin: 30px 0;
-  color: #ffffff;
-  font-size: 28px;
+  margin-bottom: 20px;
+  color: #333;
 }
 
-hr {
-  margin: 40px 0;
-  border: none;
-  height: 1px;
-  background: rgba(255,255,255,0.3);
-}
-
-/* FORM */
-
+/* Form Box */
 .form-box {
-  background: rgba(255,255,255,0.15);
-  backdrop-filter: blur(15px);
-  padding: 30px;
-  border-radius: 20px;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-  max-width: 600px;
-  margin: auto;
-}
-
-.form-box form {
+  background: rgba(255, 255, 255, 0.35);
+  padding: 25px;
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  margin-bottom: 40px;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 12px;
 }
 
+.form-box:hover {
+  box-shadow:
+    -5px -5px 20px rgb(92, 63, 129),
+    5px 5px 20px rgb(92, 63, 129);
+}
+
+/* Inputs */
 .form-box input {
+  width: 100%;
   padding: 12px;
-  border-radius: 10px;
-  border: none;
+  border: 2px solid black;
+  border-radius: 8px;
   font-size: 14px;
+  box-sizing: border-box;
 }
 
 .form-box input:focus {
-  outline: 2px solid #a577e1;
+  outline: none;
+  border-color: rgb(181, 146, 228);
 }
 
+/* Checkbox */
 .checkbox-group {
-  color: white;
-  font-size: 14px;
+  margin: 10px 0;
+  color: black;
 }
 
+/* Buttons */
 .form-box button {
   padding: 12px;
-  border-radius: 10px;
   border: none;
+  border-radius: 8px;
   cursor: pointer;
   font-weight: 600;
-  transition: 0.3s;
 }
 
 .form-box button[type="submit"] {
-  background: #a577e1;
-  color: white;
+  background-color: rgb(165, 119, 225);
+  color: black;
 }
 
 .form-box button[type="submit"]:hover {
-  background: #6b34b4;
+  background-color: rgb(107, 52, 180);
 }
 
 .cancel-btn {
-  background: #dc3545;
+  background-color: #dc3545;
   color: white;
+  margin-top: 10px;
 }
 
 .cancel-btn:hover {
-  background: #a71d2a;
+  background-color: #a71d2a;
 }
 
-/* HOTEL LIST */
-
+/* Hotel Cards */
 .hotel-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
-  align-items: stretch;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+  align-items: stretch;   /* FIX */
 }
 
 .hotel-card {
-  background: #ffffff;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-  display: flex;
-  flex-direction: column;
+  background: white;
+  padding: 18px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
   transition: 0.3s ease;
+
+  display: flex;              /* FIX */
+  flex-direction: column;     /* FIX */
+  justify-content: space-between; /* FIX */
+  height: 100%;               /* FIX */
+  min-height: 420px;          /* FIXED HEIGHT */
 }
 
 .hotel-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-6px);
 }
 
 .hotel-card img {
   width: 100%;
-  height: 200px;
+  height: 170px;
   object-fit: cover;
+  border-radius: 8px;
 }
 
 .hotel-card h3 {
-  margin: 15px 20px 10px;
-  font-size: 22px;
+  margin: 12px 0;
 }
 
-.hotel-card p {
-  margin: 5px 20px;
-  font-size: 14px;
-}
-
-.hotel-card p:last-of-type {
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
+/* Action Buttons */
 .card-buttons {
+  margin-top: auto;   /* FIX */
   display: flex;
-  gap: 15px;
-  padding: 15px 20px 20px;
-  margin-top: auto;
+  gap: 10px;
 }
 
 .card-buttons button {
   flex: 1;
-  padding: 10px;
-  border-radius: 8px;
+  padding: 8px;
+  border-radius: 6px;
   border: none;
   color: white;
   cursor: pointer;
-  font-weight: 500;
 }
 
 .edit-btn {
-  background: #28a745;
+  background-color: #28a745;
 }
 
 .edit-btn:hover {
-  background: #1e7e34;
+  background-color: #1e7e34;
 }
 
 .delete-btn {
-  background: #dc3545;
+  background-color: #dc3545;
 }
 
 .delete-btn:hover {
-  background: #a71d2a;
+  background-color: #a71d2a;
 }
 
-/* ======================
-   RESPONSIVE
-====================== */
-
-@media (max-width: 992px) {
-  .page-container {
-    padding: 20px;
-  }
-}
-
+/* Responsive */
 @media (max-width: 768px) {
 
   .form-box {
-    padding: 20px;
-  }
-
-  .hotel-card img {
-    height: 170px;
-  }
-
-  .hotel-card h3 {
-    font-size: 20px;
-  }
-}
-
-@media (max-width: 480px) {
-
-  .page-container h2 {
-    font-size: 22px;
+    padding: 18px;
   }
 
   .hotel-card img {
     height: 150px;
   }
+}
 
-  .card-buttons {
-    flex-direction: column;
-  }
+@media (max-width: 480px) {
 
   .form-box button {
     width: 100%;
+  }
+
+  .card-buttons {
+    flex-direction: column;
   }
 }
