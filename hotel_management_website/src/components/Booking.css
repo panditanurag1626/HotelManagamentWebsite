@@ -86,62 +86,94 @@ button:hover {
   background-color: #dfd7cd;
 }
 
-/* Media query for tablets (max-width: 992px) */
-@media (max-width: 992px) {
-  .booking-page {
-    background-size: contain;
-  }
-  
+@media (max-width: 400px) {
+
   .container {
-    padding: 50px ;
-    margin: 50px;
-    width: 90%;
+    width: 95%;
+    padding: 12px;
+    margin: 10px auto;
   }
 
   h2 {
-    font-size: 24px;
+    font-size: 18px;
   }
 
-  input, select {
-    font-size: 13px;
-    padding: 8px 10px;
+  input,
+  select {
+    font-size: 12px;
+    padding: 7px;
   }
 
   button {
-    padding: 12px;
-    font-size: 14px;
+    font-size: 12px;
+    padding: 8px;
   }
 }
 
-/* Media query for mobile devices (max-width: 600px) */
-@media (max-width: 600px) {
-  .booking-page {
-    background-size: cover;
-    background-position: center;
-  }
-  
+/* Mobile Devices (400px - 600px) */
+@media (min-width: 401px) and (max-width: 600px) {
+
   .container {
-    padding: 15px 15px;
-    margin: 15px;
-    border-radius: 10px;
+    width: 92%;
+    padding: 18px;
+    margin: 20px auto;
   }
 
   h2 {
     font-size: 20px;
-    text-align: center;
   }
 
-  label {
-    font-size: 14px;
-  }
-
-  input, select {
-    font-size: 12px;
-    padding: 8px;
+  input,
+  select {
+    font-size: 13px;
   }
 
   button {
+    font-size: 14px;
     padding: 10px;
-    font-size: 13px;
+  }
+}
+
+/* Tablets (600px - 992px) */
+@media (min-width: 601px) and (max-width: 992px) {
+
+  .container {
+    width: 80%;
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+  }
+
+  h2 {
+    font-size: 26px;
+  }
+
+  input,
+  select {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  button {
+    font-size: 15px;
+    padding: 12px;
+  }
+}
+
+/* Laptops & Small Desktops (992px - 1200px) */
+@media (min-width: 993px) and (max-width: 1200px) {
+
+  .container {
+    width: 60%;
+    max-width: 650px;
+  }
+}
+
+/* Large Screens (1200px +) */
+@media (min-width: 1201px) {
+
+  .container {
+    width: 40%;
+    max-width: 450px;
   }
 }

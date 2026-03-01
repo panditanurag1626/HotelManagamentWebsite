@@ -13,7 +13,7 @@ export default function Edit() {
       "photo": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=80",
       "roomType": "Deluxe",
       "price": 2500,
-      "available": false
+      "available": true
     },
     {
       "id": "2",
@@ -23,7 +23,7 @@ export default function Edit() {
       "photo": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=800&q=80",
       "roomType": "Sea View",
       "price": 5200,
-      "available": false
+      "available": true
     },
     {
       "id": "3",
@@ -33,7 +33,7 @@ export default function Edit() {
       "photo": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80",
       "roomType": "Suite",
       "price": 3800,
-      "available": false
+      "available": true
     },
     {
       "id": "4",
@@ -73,7 +73,7 @@ export default function Edit() {
       "photo": "https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=800&q=80",
       "roomType": "Standard",
       "price": 2800,
-      "available": false
+      "available": true
     },
     {
       "id": "8",
@@ -123,7 +123,7 @@ export default function Edit() {
       "photo": "https://images.unsplash.com/photo-1472224371017-08207f84aaae?auto=format&fit=crop&w=800&q=80",
       "roomType": "Luxury",
       "price": 6200,
-      "available": false
+      "available": true
     }
   ]);
 
