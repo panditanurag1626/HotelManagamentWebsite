@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import "./ConfirmBooking.css";
+import "./ConfirmB0oking.css";
 import { useEffect } from "react";
 
 export default function ConfirmBooking() {
