@@ -23,7 +23,7 @@
 /* ================= TEXT ================= */
 .digital {
   font-size: 18px;
-  color: black;
+  color:black;
   margin-top: 10px;
 }
 
@@ -168,8 +168,8 @@ a {
 }
 /* ================= VIDEO SECTION ================= */
 .video-section {
-  /* padding: 60px 20px; */
   text-align: center;
+  padding: 40px 0;
 }
 
 .video-section h2 {
@@ -181,20 +181,21 @@ a {
 .video-section p {
   margin-bottom: 25px;
   color: black;
-  font-size: 20px;
+  font-size: 18px;
 }
 
-/* FIXED VIDEO */
 .video-container {
-  max-width: 1800px;
-  margin: auto;
+  width: 100%;
+  /* max-width: 100%; */
+  margin: 0;
 }
 
 .video-container video {
-  width: 1800px;
+  width: 100%;
   height: auto;
+  display: block;
   object-fit: cover;
-  border-radius: 12px;
+  border-radius: 0;
 }
 
 /* ================= RESPONSIVE ================= */

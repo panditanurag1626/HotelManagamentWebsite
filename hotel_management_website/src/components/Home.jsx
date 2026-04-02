@@ -16,7 +16,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="hero">
         <h1>Welcome to City Hotel</h1>
-        <p className="digital">
+        <p className="digital" style={{color:"black"}}>
           Book Luxury Rooms At Affordable Prices
         </p>
       </section>
