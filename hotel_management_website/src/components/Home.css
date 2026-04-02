@@ -168,7 +168,7 @@ a {
 }
 /* ================= VIDEO SECTION ================= */
 .video-section {
-  padding: 60px 20px;
+  /* padding: 60px 20px; */
   text-align: center;
 }
 
@@ -186,12 +186,12 @@ a {
 
 /* FIXED VIDEO */
 .video-container {
-  max-width: 1200px;
+  max-width: 1800px;
   margin: auto;
 }
 
 .video-container video {
-  width: 100%;
+  width: 1800px;
   height: auto;
   object-fit: cover;
   border-radius: 12px;
@@ -206,7 +206,7 @@ a {
   }
 
   .video-container video {
-    height: 300px;
+    height: auto;
   }
 }
 
@@ -217,6 +217,6 @@ a {
   }
 
   .video-container video {
-    height: 220px;
+    height: auto;
   }
 }
