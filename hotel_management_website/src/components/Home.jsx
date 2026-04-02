@@ -1,71 +1,73 @@
-import React, { use,useEffect } from "react";
+import React, { useEffect } from "react";
 import "./Home.css";
 import { NavLink } from "react-router-dom";
 
-export default function Home() 
-{
+export default function Home() {
   useEffect(() => {
     document.body.classList.add("home-bg");
     return () => {
       document.body.classList.remove("home-bg");
     };
   }, []);
+
   return (
     <div style={{ paddingBottom: "80px" }}>
+
       {/* Hero Section */}
-      <section style={{ textAlign: "center", padding: "50px", color: "black" }}>
+      <section className="hero">
         <h1>Welcome to City Hotel</h1>
-        <p className="digital" style={{color:"black", fontSize:"30px"}}>Book Luxury Rooms At Affordable Prices</p>
+        <p className="digital">
+          Book Luxury Rooms At Affordable Prices
+        </p>
       </section>
 
       {/* Features */}
       <div className="lux">
-        <NavLink to="/rooms" className="feature-link">
-          <div className="hom">🏨 Luxury Rooms</div>
-        </NavLink>
-        
-        <NavLink to="/stay" className="feature-link">
-          <div className="hom">🛏️ Comfortable Stay</div>
-        </NavLink>
-
-        <NavLink to="/dining" className="feature-link">
-          <div className="hom">🍽️ Free Breakfast</div>
-        </NavLink>
-
-        <NavLink to="/service" className="feature-link">
-          <div className="hom">⏰ 24x7 Service</div>
-        </NavLink>
+        <NavLink to="/rooms"><div className="hom">🏨 Luxury Rooms</div></NavLink>
+        <NavLink to="/stay"><div className="hom">🛏️ Comfortable Stay</div></NavLink>
+        <NavLink to="/dining"><div className="hom">🍽️ Free Breakfast</div></NavLink>
+        <NavLink to="/service"><div className="hom">⏰ 24x7 Service</div></NavLink>
       </div>
 
-      {/* About / Highlights Section */}
-      {/* <section>
-        <h1 className="blog">This Is Blog Page </h1>
-        <div className="about-section">
-          <h2>Luxury Rooftop Pool Experience</h2>
-          <img src="Home.png" alt="Rooftop Pool" />
-          <p>
-            Enjoy a breathtaking rooftop swimming pool with panoramic city and mountain views.
-            Relax under the night sky, experience peaceful surroundings, and indulge in world-class
-            comfort designed for a truly luxurious stay.
-          </p>
-        </div>
 
-        <div className="about-section">
+      {/* Video Section 1 */}
+      <section className="video-section">
+        <h2>Luxury Room Tour</h2>
+        <p>Take a look inside our premium luxury rooms with modern design.</p>
+        <div className="video-container">
+          <video src="home1.mp4" controls autoPlay loop muted style={{ width: "100%" }} />
+        </div>
+      </section>
+
+      {/* Video Section 2 */}
+      <section className="video-section">
+        <h2>Premium Rooms</h2>
+        <p>Enjoy spacious rooms with modern amenities and elegant interiors.</p>
+        <div className="video-container">
+          <video src="home2.mp4" controls autoPlay loop muted style={{ width: "100%" }} />
+        </div>
+      </section>
+
+      {/* Video Section 3 */}
+      <section className="video-section">
+        <h2>Luxury Experiences</h2>
+        <p>Experience top-class services designed for your comfort and convenience.</p>
+        <div className="video-container">
+          <video src="home3.mp4" controls autoPlay loop muted style={{ width: "100%" }} />
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section className="about-wrapper">
+        <div className="secti">
           <h2>Rooftop Restaurant</h2>
           <img src="Home2.png" alt="Rooftop Restaurant" />
           <p>
-            A beautiful outdoor rooftop dining area with modern lighting, elegant seating, and a scenic mountain view at sunset.
+            A beautiful outdoor rooftop dining area with modern lighting,
+            elegant seating, and a scenic mountain view at sunset.
           </p>
         </div>
-
-        <div className="about-section">
-          <h2>Rooftop Swimming Pool</h2>
-          <img src="Home3.png" alt="Rooftop Swimming Pool" />
-          <p>
-            A modern rooftop pool with clear blue water, lounge chairs, and a scenic view of the city and surrounding hills under a bright blue sky.
-          </p>
-        </div>
-      </section> */}
+      </section>
     </div>
   );
 }
