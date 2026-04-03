@@ -27,7 +27,7 @@ export default function About()
         <h2 className="center-title">Welcome to Our Grand Hotel</h2>
 
         <div className="abo">
-          <img src="About.png" alt="Hotel Interior" />
+          <video src="home4.mp4" controls autoPlay loop muted style={{ width: "100%" }} />
         </div>
 
         <p className="set">
