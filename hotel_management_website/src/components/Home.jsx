@@ -61,7 +61,7 @@ export default function Home() {
 
 
       {/* About Section */}
-      <section className="about-wrapper">
+      {/* <section className="about-wrapper">
         <div className="secti">
           <h2>Rooftop Restaurant</h2>
           <img src="Home2.png" alt="Rooftop Restaurant" />
@@ -70,7 +70,7 @@ export default function Home() {
             elegant seating, and a scenic mountain view at sunset.
           </p>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }
